@@ -1,0 +1,142 @@
+.morelikethis-panel{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.morelikethis-title-wrapper{
+    display: flex;
+    flex-grow: 1;
+    align-self:flex-start;
+    
+    width: 95%;
+
+    color: transparent;
+  
+    padding: 5px;
+    margin-top: 60px;
+}
+
+.morelikethis-title-wrapper a{
+    text-decoration: none;
+}
+
+.morelikethis-title{
+    font-size: 20px;
+
+    color: var(--default-text-color);
+  
+    border-bottom: 2px solid;
+    border-color: var(--card-background-color);
+  
+    padding-left: 2px;
+    padding-bottom: 2px;
+    margin-bottom: 5px;
+  
+    width: 100%;
+
+    cursor: pointer;
+}
+
+.morelikethis-title:hover{
+    color:var(--special-text-color);
+}
+
+.morelikethis-game-wrapper{
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    grid-template-rows: repeat(2, 150px);
+
+    margin-top: 10px;
+}
+
+.morelikethis-game-wrapper a{
+    text-decoration: none;
+}
+
+.morelikethis-game{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+
+    margin-left: 12.5px;
+    margin-right: 12.5px;
+    margin-bottom: 20px;
+
+    cursor: pointer;
+}
+
+.morelikethis-game-image{
+    width: 275px;
+    height: 133.56px;
+    border-radius: 10px;
+}
+
+.morelikethis-game:hover .morelikethis-game-image{
+    box-shadow: 0px 0px 20px 5px var(--card-background-hover-color);
+}
+
+.morelikethis-game-title{
+    position: relative;
+    bottom: 50px;
+    background-color: var(--morelikethis-card-color);
+
+    width: 275px;
+    height: 50px;
+
+    border-radius: 10px;
+
+    text-align: center;
+    align-self: center;
+
+    text-shadow: 1px 1px black;
+}
+
+.morelikethis-game-title p{
+    font-size: 16px;
+
+    color: var(--card-title-color-weak);
+    
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.morelikethis-game:hover .morelikethis-game-title{
+    background-color: var(--card-background-color);
+}
+
+.morelikethis-game:hover .morelikethis-game-title p{
+    color: var(--card-title-color);
+}
+
+@media screen and (max-width: 1600px) {
+    .morelikethis-game-wrapper{
+        grid-template-columns: repeat(3, 300px);
+        grid-template-rows: repeat(3, 150px);
+    }
+  }
+  
+/* Max width for smart phones */
+@media screen and (max-width: 1400px) {
+    .morelikethis-title-wrapper{
+        margin-top: 25px;
+    }
+
+    .morelikethis-game-wrapper{
+        grid-template-columns: repeat(2, 300px);
+        grid-template-rows: repeat(4, 150px);
+    }
+  }
+
+  @media screen and (max-width: 920px) {
+    .morelikethis-game-wrapper{
+        grid-template-columns: repeat(1, 300px);
+        grid-template-rows: repeat(8, 150px);
+    }
+  }

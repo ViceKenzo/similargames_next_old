@@ -1,0 +1,163 @@
+.card-projector {
+}
+
+.card {
+  font-size: 16px;
+  background-color: var(--card-background-color);
+  border-radius: 3px;
+  text-decoration: none;
+
+  height: 85px;
+
+  display: flex;
+
+  margin-bottom: 7px;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: var(--card-background-hover-color);
+}
+
+.card-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.card-image {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+
+  width: 175px;
+  height: 85px;
+}
+
+.card-text-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  flex-grow: 7;
+  flex-basis: 0;
+
+  padding-left: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card-title {
+  display: block;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  color: var(--card-title-color);
+  font-size: 20px;
+}
+
+.card-tags {
+  display: block;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  color: var(--card-tag-text-color-a);
+  text-overflow: ellipsis;
+}
+
+.card-release-date {
+  display:flex;
+  justify-content: flex-end;
+
+  padding-right: 20px;
+
+  color: var(--carddate-text-color);
+
+  min-width: 100px;
+  align-self: center;
+}
+
+#no-search-result-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#no-search-result-card .card-text-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  white-space: normal;
+}
+
+#no-search-result-card .card-title {
+  padding: 0px;
+  margin: 0px;
+}
+/* Max width for smart phones */
+@media screen and (max-width: 960px) {
+  .card-release-date {
+    padding-right: 10px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .card-title{
+    font-size: 19px;
+  }
+
+  .card-tags{
+    font-size: 14px;
+  }
+  
+  .card-release-date{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-projector{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+  }
+
+  .card{
+    border-radius: 10px;
+
+    flex-direction: column;
+    height: 130px;
+    width: auto;
+
+    align-items: center;
+  }
+
+  .card-image-wrapper{
+    flex-grow: 1;
+    width: auto;
+    padding-top: 10px;
+
+    display:flex;
+    align-items: flex-start;
+  } 
+
+  .card-text-wrapper{
+    width:auto;
+    padding-left: 20px;
+  }
+
+  .card-title{
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .card-tags{
+    display: none;
+  }
+}

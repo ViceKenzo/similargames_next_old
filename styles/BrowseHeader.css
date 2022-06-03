@@ -1,0 +1,192 @@
+.browse-header {
+  display: flex;
+  align-items: center;
+
+  border-style: solid;
+  border-width: 0px;
+  border-bottom-width: 2px;
+  border-color: var(--card-background-color);
+
+  padding-bottom: 6px;
+
+  justify-content: space-between;
+}
+
+.browse-header-left{
+  display:flex;
+}
+
+.browse-header-image-wrapper{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-top: 5px;
+}
+
+.browse-header-image{
+  border-radius: 3px;
+
+  width: 175px;
+  height: 85px;
+
+  box-shadow: 1px 3px 4px 1px rgba(0, 0, 0, 0.3);
+}
+
+.browse-header-image:hover{
+  box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+.browse-header-announcer-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-left: 25px;
+}
+
+.browse-header-gameslike-announcer{
+  font-size: 24px;
+}
+
+.browse-header-game-title{
+  color: var(--special-text-color);
+
+  font-size: 24px;
+
+  text-decoration: none;
+}
+
+.browse-header-game-title:hover{
+  text-decoration: underline;
+}
+
+.browse-header-right{
+  display:flex;
+}
+
+.browse-header-game-info-left{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  border-right: solid var(--special-text-color) 2px;
+
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.browse-header-game-info-left.no-display{
+  display: none;
+}
+
+.browse-header-game-info-left.no-release-date{
+  border: none;
+}
+
+.browse-header-game-info-left.no-display{
+  display:none;
+  border-right: none;
+}
+
+.browse-header-game-info-right.no-display{
+  display:none;
+}
+
+.browse-header-developer{
+  font-size: 16px;
+}
+
+.browse-header-developer.no-display{
+  display:none;
+}
+
+.browse-header-publisher{
+  font-size: 16px;
+}
+
+.browse-header-publisher.no-display{
+  display: none;
+}
+
+.browse-header-game-info-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.browse-header-game-info-right.no-display{
+  display: none;
+}
+
+.browse-header-release-date-announcer{
+  font-size: 16px;
+}
+
+.browse-header-release-date{
+  font-size: 16px;
+}
+
+.browse-header.no-game .browse-header-left{
+  display: none;
+}
+
+.browse-header.no-game .browse-header-right{
+  display: none;
+}
+
+.browse-header.no-game{
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.browse-header-search-announcer{
+  display: none;
+
+  color: var(--card-background-color);
+  font-size: 28px;
+}
+
+.browse-header.no-game .browse-header-search-announcer{
+  display:flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 1600px) {
+  .browse-header-game-info-left{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .browse-header-game-info-right{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .browse-header-game-info-left{
+    border:none;
+
+    padding-left: 10px;
+    padding-right: 0px;
+  }
+
+  .browse-header-game-info-right{
+    display:none;
+  }
+}
+
+/* Max width for smart phones */
+@media screen and (max-width: 960px) {
+  .browse-header {
+    flex-direction: column;
+  }
+
+  .browse-header-right{
+    display:none;
+  }
+}
