@@ -92,7 +92,7 @@ input:focus {
 
 .search-results {
   background-color: var(--searchbar-suggestion-background);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 15px;
+  box-shadow: rgba(0, 1, 1, 0.45) 0px 10px 15px;
 
   display: flex;
   flex-direction: column;
@@ -116,8 +116,8 @@ input:focus {
 
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 
   height: auto;
 
@@ -207,16 +207,6 @@ input:focus {
 
   ::placeholder {
     font-size: 18px;
-  }
-
-  .search-panel-search-bar{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .search-results{
-    min-width: 400px;
   }
 
   .search-product-result-image img {

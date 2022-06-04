@@ -12,13 +12,15 @@ function LandingPageSearchPanel(props) {
   // Functions
   return (
     <div className="landing-page-search-panel">
-      <Image
-        className="search-panel-header"
-        src={SimilarGamesHeaderImage}
-        alt="Similar Games Logo"
-        width={700}
-        height={152.17}
-      />
+      <div className="search-panel-image-wrapper">
+        <Image
+          className="search-panel-header"
+          src={SimilarGamesHeaderImage}
+          alt="Similar Games Logo"
+          width={700}
+          height={152.17}
+        />
+      </div>
       <div className="search-panel-search-bar">
         <SearchBar
           submitSearch={props.submitSearch}

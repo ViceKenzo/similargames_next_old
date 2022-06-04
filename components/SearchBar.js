@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/dist/client/image";
 
 import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 function SearchBar(props) {
   // Variables
@@ -109,11 +109,9 @@ function SearchBar(props) {
             tabIndex="-1"
           />
         </form>
-
-        {/* fontawesomeicon */}
-        <div
+        <FontAwesomeIcon
           className={getSearchIconClass()}
-          //icon={xIconVisible ? faXmark : faMagnifyingGlass}
+          icon={xIconVisible ? faXmark : faMagnifyingGlass}
           onClick={() => {
             handleIconClick();
           }}
@@ -138,19 +136,20 @@ function SearchBar(props) {
                     key={index + "result-image"}
                     className="search-product-result-image"
                   >
-                    <Image
-                      // src={
-                      //   props.serverAddress +
-                      //   "/header_images/" +
-                      //   game.image_id +
-                      //   ".jpg"
-                      // }
-                      src={ThumbnailImage}
+                    <img
+                      src={
+                        props.serverAddress +
+                        "/header_images/" +
+                        game.image_id +
+                        ".jpg"
+                      }
+                      width={162}
+                      height={76}
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // This is to prevent accidental looping
                         currentTarget.src = ThumbnailImage;
                       }}
-                    ></Image>
+                    ></img>
                   </div>
                   <div
                     key={index + "result-desc"}
