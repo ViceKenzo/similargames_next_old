@@ -110,7 +110,11 @@ function NavBar(props) {
         <Link href="/">
           <a className="navbar-logo">SimilarGames</a>
         </Link>
-        <div className={getSearchBarNavBarWrapperClass()}>
+        <div
+          className={
+            "search-bar-wrapper" + " " + getSearchBarNavBarWrapperClass()
+          }
+        >
           <a
             style={{ display: "hidden" }}
             to={"/find-games-like?q=" + searchInputValue}

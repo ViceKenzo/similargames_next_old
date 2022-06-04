@@ -160,4 +160,13 @@
   .card-tags{
     display: none;
   }
+  
+  #no-search-result-card{
+    height: 200px;
+    padding: 10px;
+  }
+
+  #no-search-result-card .card-text-wrapper{
+    padding: 5px;
+  }
 }

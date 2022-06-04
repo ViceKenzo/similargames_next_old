@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
 
@@ -23,12 +24,14 @@ function CardProjector(props) {
             <img
               key={index + "card-image"}
               className="card-image"
-              // src={
-              //   props.config.serverAddress +
-              //   "/header_images/" +
-              //   game.image_id +
-              //   ".jpg"
-              // }
+              src={
+                props.config.serverAddress +
+                "/header_images/" +
+                game.image_id +
+                ".jpg"
+              }
+              width={175}
+              height={85}
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null; // This is to prevent accidental looping
                 currentTarget.src = ThumbnailImage;
@@ -56,9 +59,11 @@ function CardProjector(props) {
     return (
       <div className="card" id="no-search-result-card">
         <div className="card-image-wrapper">
-          <img
+          <Image
             className="card-image"
-            //src={ThumbnailImage}
+            src={ThumbnailImage}
+            width={175}
+            height={85}
             alt="Search For Similar Games Question Mark Image"
           />
         </div>

@@ -60,17 +60,29 @@
   grid-template-columns: repeat(2, auto);
   grid-column-gap: 20px;
 
+  padding-inline-start: 0px;
+
   list-style: none;
+}
+
+.navbar-wrapper .search-bar-wrapper{
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 .navbar-wrapper .search-bar{
   padding-top: 5px;
-  width: 100%;
+  width: 600px;
+
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .navbar-wrapper .search-results{
   padding-top: 5px;
-  width:fit-content;
+  width: 600px;
+  max-height: 450px;
 }
 
 .navbar-wrapper .search-bar-input{
@@ -143,6 +155,40 @@
   display: none;
 }
 
+@media screen and (max-width: 1550px)
+{
+  .navbar-wrapper .search-bar{
+    width: 450px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .navbar-wrapper .search-results{
+    width: 450px;
+  }
+
+  .search-product-result{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-product-desc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 1280px)
+{
+  .NavBarItems{
+    padding-left: var(--global-window-border-padding-mobile);
+    padding-right: var(--global-window-border-padding-mobile);
+  }
+}
+
+
 /* Max width for smart phones */
 @media screen and (max-width: 960px) {
   .navbar-wrapper .search-bar{
@@ -158,24 +204,35 @@
   }
 
   .search-bar-mobile{
-    margin-top: 25px;
+    background-color:var(--navbar-background-color);
+    padding-bottom: 20px;
     margin-bottom: 40px;
   }
 
+  .search-bar-mobile .search-bar{
+    width: 100%;
+  }
+
+  .search-bar-mobile .search-bar-input{
+    width: 100%;
+    height: 35px;
+  }
+
   .search-bar-mobile .search-results{
-    margin-top: 40px;
+    margin-top: 39px;
+    width: 90%;
   }
 
   .search-bar-mobile .search-product-result{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
   }
 
   .search-bar-mobile .search-product-result-desc{
     display:flex;
     flex-direction: column;
-    align-items:center;
+    justify-items:flex-start;
   }
 
   .search-bar-mobile{
@@ -203,5 +260,12 @@
   .NavBarItems {
     padding-left: var(--global-window-border-padding-mobile);
     padding-right: var(--global-window-border-padding-mobile);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .search-product-result{
+    flex-direction: column !important;
+    align-items: center !important;
   }
 }
