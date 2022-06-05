@@ -22,6 +22,10 @@ import "../styles/SearchBar.css";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
+if (process.env.NODE_ENV === "development") {
+  process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+}
+
 function MyApp({ Component, pageProps }) {
   return (
     <>

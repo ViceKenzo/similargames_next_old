@@ -131,6 +131,7 @@ function BrowseHeader(props) {
         <Link href={getLinkTo()} className="browse-header-image-wrapper">
           <img
             alt={getImageAlt()}
+            src={getImageSrc()}
             className="browse-header-image"
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // This is to prevent accidental looping
@@ -140,9 +141,9 @@ function BrowseHeader(props) {
         </Link>
         <div className="browse-header-announcer-wrapper">
           <div className="browse-header-gameslike-announcer">Games like:</div>
-          <a to={getLinkTo()} className="browse-header-game-title">
-            {getGameTitle()}
-          </a>
+          <Link href={getLinkTo()}>
+            <a className="browse-header-game-title">{getGameTitle()}</a>
+          </Link>
         </div>
       </div>
       <div className="browse-header-right">

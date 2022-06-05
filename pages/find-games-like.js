@@ -33,6 +33,8 @@ function BrowsePage(props) {
   //Effects
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log(props);
+    setSimilarGames();
   }, []);
 
   useEffect(() => {
@@ -51,14 +53,14 @@ function BrowsePage(props) {
     updateSearchResults();
   }, [showSameDeveloper]);
 
-  useEffect(() => {
-    if (location.search && location.search != "") {
-      let qParam = new URLSearchParams(location.search).get("q");
-      if (!qParam || qParam != "") {
-        requestSimilarGames(qParam);
-      }
-    }
-  }, [location.search]);
+  // useEffect(() => {
+  //   if (location.search && location.search != "") {
+  //     let qParam = new URLSearchParams(location.search).get("q");
+  //     if (!qParam || qParam != "") {
+  //       requestSimilarGames(qParam);
+  //     }
+  //   }
+  // }, [location.search]);
 
   useEffect(() => {
     if (targetGame) {
@@ -190,53 +192,42 @@ function BrowsePage(props) {
     window.scrollTo(0, 0);
   };
 
-  const requestSimilarGames = (tempSearchWord) => {
-    if (tempSearchWord == null) return;
+  const setSimilarGames = () => {
+    // if (xhttp.status == 400) {
+    //   setSearchResultMessage(
+    //     "Sorry! The game you entered does not exist in our system."
+    //   );
+    //   setGameData([]);
+    //   return;
+    // } else if (xhttp.status == 404) {
+    //   setSearchResultMessage(
+    //     "Sorry! The game you entered does not exist in our system."
+    //   );
+    //   setGameData([]);
+    //   return;
+    // } else if (xhttp.status == 200) {
+    //   if (!xhttp.response) {
+    //     setSearchResultMessage("Sadly, no similar games were found.");
+    //     setGameData([]);
+    //     return;
+    //   }
+    // }
 
-    setGameData([]);
+    if (
+      props.responseObject == null ||
+      props.responseObject.game == null ||
+      props.responseObject.similarGames == null
+    )
+      return;
 
-    const xhttp = new XMLHttpRequest();
-    let requestUrl =
-      Config.serverAddress + "/similargames" + "/" + tempSearchWord;
-
-    xhttp.open("get", requestUrl, true);
-
-    xhttp.send();
-
-    xhttp.onload = () => {
-      if (xhttp.status == 400) {
-        setSearchResultMessage(
-          "Sorry! The game you entered does not exist in our system."
-        );
-        setGameData([]);
-        return;
-      } else if (xhttp.status == 404) {
-        setSearchResultMessage(
-          "Sorry! The game you entered does not exist in our system."
-        );
-        setGameData([]);
-        return;
-      } else if (xhttp.status == 200) {
-        if (!xhttp.response) {
-          setSearchResultMessage("Sadly, no similar games were found.");
-          setGameData([]);
-          return;
-        }
-      }
-
-      let responseObj = JSON.parse(xhttp.response);
-
-      if (responseObj.game == null || responseObj.similarGames == null) return;
-
-      if (responseObj.similarGames.length <= 0) {
-        setSearchResultMessage("No similar games were found.");
-        setTargetGame(responseObj.game);
-        setGameData([]);
-      } else {
-        setTargetGame(responseObj.game);
-        setGameData(responseObj.similarGames);
-      }
-    };
+    if (props.responseObject.similarGames.length <= 0) {
+      setSearchResultMessage("No similar games were found.");
+      setTargetGame(props.responseObject.game);
+      setGameData([]);
+    } else {
+      setTargetGame(props.responseObject.game);
+      setGameData(props.responseObject.similarGames);
+    }
   };
 
   return (
@@ -297,6 +288,15 @@ function BrowsePage(props) {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    Config.serverAddress + "/similargames" + "/" + "God_of_War"
+  );
+  const responseObject = await res.json();
+
+  return { props: { responseObject } };
 }
 
 export default BrowsePage;
