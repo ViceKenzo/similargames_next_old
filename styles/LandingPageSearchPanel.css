@@ -25,7 +25,15 @@
   max-height: 450px;
 }
 
-.search-panel-header {
+.landing-page-search-panel .search-product-result{
+  flex-direction: row;
+}
+
+.landing-page-search-panel .search-product-result-desc{
+  align-items: flex-start;
+}
+
+.landing-page-search-panel .search-panel-header {
   padding-bottom: 15px;
 }
 
@@ -36,56 +44,56 @@
   padding-bottom: 15px;
 }
 
-.search-panel-search-bar {
+.landing-page-search-panel .search-panel-search-bar {
   display: block;
 
   padding-bottom: 10px;
   justify-self: center;
 }
 
-.search-panel-main-phrase {
+.landing-page-search-panel .search-panel-main-phrase {
   color: var(--catch-phrase-text-color);
   font-size: 24px;
 
   padding-bottom: 15px;
 }
 
-.search-panel-footer {
+.landing-page-search-panel .search-panel-footer {
   display: flex;
   align-items: center;
   justify-items: center;
   padding: 7px;
 }
 
-.search-panel-footer:hover{
+.landing-page-search-panel .search-panel-footer:hover{
   border-radius: 10px;
 
   background-color: var(--about-block-hover-color);
 }
 
-.search-panel-icon-announcer {
+.landing-page-search-panel .search-panel-icon-announcer {
   font-size: 20px;
   padding-right: 20px;
 }
 
-.search-panel-icon-wrapper {
+.landing-page-search-panel .search-panel-icon-wrapper {
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-column-gap: 20px;
   align-items: center;
 }
 
-.logo-epic {
+.landing-page-search-panel .logo-epic {
   padding-left: 2.5px;
   padding-right: 2.5px;
 }
 
-.logo-steam {
+.landing-page-search-panel .logo-steam {
   padding-left: 2.5px;
   padding-right: 2.5px;
 }
 
-.logo-gog {
+.landing-page-search-panel .logo-gog {
   padding-left: 2.5px;
   padding-right: 2.5px;
 }
@@ -105,9 +113,7 @@
     min-width: 450px;
   }
 
-  .search-product-result{
-    display: flex;
-    flex-direction: column;;
+  .landing-page-search-panel .search-product-result-desc{
     align-items: center;
   }
 
@@ -123,6 +129,19 @@
 @media screen and (max-width: 920px) {
   .search-panel-header{
     width: 360px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .landing-page-search-panel .search-product-result{
+    flex-direction: column;
+  }
+
+  .landing-page-search-panel .search-product-result-desc{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 }
 
