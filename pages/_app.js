@@ -19,6 +19,11 @@ import "../styles/PopularCardPanel.css";
 import "../styles/ProjectorControlPanel.css";
 import "../styles/SearchBar.css";
 
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import ReactGA from "react-ga";
+import Config from "../config/config";
+
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
@@ -27,6 +32,16 @@ if (process.env.NODE_ENV === "development") {
 }
 
 function MyApp({ Component, pageProps }) {
+  // Variables
+  const router = useRouter();
+  ReactGA.initialize(Config.GA_TRACKING_CODE);
+
+  // Effects
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, [router.pathname, router.query.slug]);
+
+  // Functions
   return (
     <>
       <NavBar />

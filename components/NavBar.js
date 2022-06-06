@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Config from "../config/config";
-//import ReactGA from "react-ga";
 
 import SearchBar from "./SearchBar.js";
 
@@ -29,13 +28,7 @@ function NavBar(props) {
 
   const router = useRouter();
 
-  //ReactGA.initialize(Config.GA_TRACKING_CODE);
-
   // Effects
-  useEffect(() => {
-    //ReactGA.pageview(window.location.href);
-  }, [router.query.slug]);
-
   useEffect(() => {
     const delay = setTimeout(() => {
       requestSuggestionsFromServer();

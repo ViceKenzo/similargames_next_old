@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Config from "../../../config/config";
-//import ReactGA from "react-ga";
+import ReactGA from "react-ga";
 
 import BrowseHeader from "../../../components/BrowseHeader.js";
 import BrowseNavigator from "../../../components/BrowseNavigator.js";
@@ -28,7 +28,7 @@ function BrowsePage(props) {
   );
 
   const router = useRouter();
-  //ReactGA.initialize(Config.GA_TRACKING_CODE);
+  ReactGA.initialize(Config.GA_TRACKING_CODE);
 
   //Effects
   useEffect(() => {
@@ -60,11 +60,11 @@ function BrowsePage(props) {
   useEffect(() => {
     if (targetGame) {
       const delay = setTimeout(() => {
-        // ReactGA.event({
-        //   category: "Filter Change",
-        //   action: "Match Value",
-        //   label: matchValue,
-        // });
+        ReactGA.event({
+          category: "Filter Change",
+          action: "Match Value",
+          label: matchValue,
+        });
         updateSearchResults();
       }, 500);
       return () => clearTimeout(delay);
@@ -74,11 +74,11 @@ function BrowsePage(props) {
   // Handlers
   const handleSortChange = (event) => {
     if (targetGame) {
-      //   ReactGA.event({
-      //     category: "Filter Change",
-      //     action: "Sort Change",
-      //     label: event.target.value,
-      //   });
+      ReactGA.event({
+        category: "Filter Change",
+        action: "Sort Change",
+        label: event.target.value,
+      });
     }
 
     setSorting(event.target.value);
@@ -100,11 +100,11 @@ function BrowsePage(props) {
     if (!targetGame) return;
 
     if (targetGame) {
-      //   ReactGA.event({
-      //     category: "Filter Change",
-      //     action: "NSFW Click",
-      //     label: !showNSFW + "",
-      //   });
+      ReactGA.event({
+        category: "Filter Change",
+        action: "NSFW Click",
+        label: !showNSFW + "",
+      });
     }
 
     setShowNSFW(!showNSFW);
@@ -114,11 +114,11 @@ function BrowsePage(props) {
     if (!targetGame) return;
 
     if (targetGame) {
-      //   ReactGA.event({
-      //     category: "Filter Change",
-      //     action: "Same Developer Click",
-      //     label: !showSameDeveloper + "",
-      //   });
+      ReactGA.event({
+        category: "Filter Change",
+        action: "Same Developer Click",
+        label: !showSameDeveloper + "",
+      });
     }
 
     setShowSameDeveloper(!showSameDeveloper);
@@ -188,26 +188,6 @@ function BrowsePage(props) {
   };
 
   const setSimilarGames = () => {
-    // if (xhttp.status == 400) {
-    //   setSearchResultMessage(
-    //     "Sorry! The game you entered does not exist in our system."
-    //   );
-    //   setGameData([]);
-    //   return;
-    // } else if (xhttp.status == 404) {
-    //   setSearchResultMessage(
-    //     "Sorry! The game you entered does not exist in our system."
-    //   );
-    //   setGameData([]);
-    //   return;
-    // } else if (xhttp.status == 200) {
-    //   if (!xhttp.response) {
-    //     setSearchResultMessage("Sadly, no similar games were found.");
-    //     setGameData([]);
-    //     return;
-    //   }
-    // }
-
     if (
       props.responseObject == null ||
       props.responseObject.game == null ||
