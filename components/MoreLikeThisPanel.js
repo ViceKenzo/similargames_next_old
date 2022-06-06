@@ -1,11 +1,11 @@
 import React from "react";
-import Image from "next/dist/client/image";
+import { useRouter } from "next/router";
 
 import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
 
 function MoreLikeThisPanel(props) {
   // Variables
-  //const navigate = useNavigate();
+  const router = useRouter();
 
   // Element Gets
   const getGamesProjection = () => {
@@ -14,13 +14,14 @@ function MoreLikeThisPanel(props) {
         return (
           <a
             key={index + "link"}
+            href={"/game/" + game.id}
             className="morelikethis-game"
-            onClick={() => {
-              //navigate("/game?id=" + game.id);
-              props.requestAndSetGameDetail(game.id);
+            onClick={(event) => {
+              event.preventDefault();
+              handleGameDetailClick(game.id);
             }}
           >
-            <Image
+            <img
               key={index + "image"}
               className="morelikethis-game-image"
               src={
@@ -42,12 +43,24 @@ function MoreLikeThisPanel(props) {
   };
 
   // Functions
+  const handleMoreLikeThisClick = () => {
+    router.push("/find-games-like/" + props.mainGame.web_name);
+  };
+
+  const handleGameDetailClick = (id) => {
+    router.push("/game/" + id);
+  };
+
   return (
     <div className="morelikethis-panel">
       <div className="morelikethis-title-wrapper">
         <a
-          to={"/find-games-like?q=" + props.mainGame.web_name}
+          href={"/find-games-like/" + props.mainGame.web_name}
           className="morelikethis-title"
+          onClick={(event) => {
+            event.preventDefault();
+            handleMoreLikeThisClick();
+          }}
         >
           More like this
         </a>

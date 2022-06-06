@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Config from "../config/config";
 //import ReactGA from "react-ga";
@@ -26,19 +27,14 @@ function NavBar(props) {
   const [searchInputValue, setSearchInputValue] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
 
-  //const location = useLocation();
-  const location = { pathname: "lmao", search: "saveme" };
+  const router = useRouter();
 
   //ReactGA.initialize(Config.GA_TRACKING_CODE);
 
   // Effects
   useEffect(() => {
-    closeMobileMenu();
-  }, [location.pathname]);
-
-  useEffect(() => {
     //ReactGA.pageview(window.location.href);
-  }, [location.pathname, location.search]);
+  }, [router.query.slug]);
 
   useEffect(() => {
     const delay = setTimeout(() => {
@@ -53,7 +49,7 @@ function NavBar(props) {
 
   // Class Gets
   const getSearchBarNavBarWrapperClass = () => {
-    if (location.pathname == "/") {
+    if (router.pathname == "/") {
       return "search-bar-hidden";
     } else {
       return "search-bar-visible";

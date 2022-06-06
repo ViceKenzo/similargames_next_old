@@ -1,9 +1,12 @@
 import React from "react";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
 
 function BrowseHeader(props) {
+  // Variables
+  const router = useRouter();
+
   // Class Gets
   const getDeveloperClass = () => {
     let cName = "browse-header-developer";
@@ -120,15 +123,26 @@ function BrowseHeader(props) {
   // Functions
   const getLinkTo = () => {
     if (props.targetGame) {
-      return "/game?id=" + props.targetGame.id;
+      return "/game/" + props.targetGame.id;
     } else return "";
+  };
+
+  const handleGameDetailClick = () => {
+    router.push(getLinkTo());
   };
 
   return (
     <div className={getBrowseHeaderClass()}>
       <div className="browse-header-search-announcer">Search for a game</div>
       <div className="browse-header-left">
-        <Link href={getLinkTo()} className="browse-header-image-wrapper">
+        <a
+          href={getLinkTo()}
+          onClick={(event) => {
+            event.preventDefault();
+            handleGameDetailClick();
+          }}
+          className="browse-header-image-wrapper"
+        >
           <img
             alt={getImageAlt()}
             src={getImageSrc()}
@@ -138,12 +152,19 @@ function BrowseHeader(props) {
               currentTarget.src = ThumbnailImage;
             }}
           />
-        </Link>
+        </a>
         <div className="browse-header-announcer-wrapper">
           <div className="browse-header-gameslike-announcer">Games like:</div>
-          <Link href={getLinkTo()}>
-            <a className="browse-header-game-title">{getGameTitle()}</a>
-          </Link>
+          <a
+            className="browse-header-game-title"
+            href={getLinkTo()}
+            onClick={(event) => {
+              event.preventDefault();
+              handleGameDetailClick();
+            }}
+          >
+            {getGameTitle()}
+          </a>
         </div>
       </div>
       <div className="browse-header-right">

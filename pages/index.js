@@ -76,9 +76,19 @@ function LandingPage(props) {
         searchInputValue={searchInputValue}
         serverAddress={Config.serverAddress}
       />
-      <PopularCardPanel serverAddress={Config.serverAddress} />
+      <PopularCardPanel
+        serverAddress={Config.serverAddress}
+        popularGames={props.popularGames}
+      />
     </React.Fragment>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(Config.serverAddress + "/populargames");
+  const popularGames = await res.json();
+
+  return { props: { popularGames } };
 }
 
 export default LandingPage;

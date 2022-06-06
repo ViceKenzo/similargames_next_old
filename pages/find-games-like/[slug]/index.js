@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Config from "../config/config";
+import { useRouter } from "next/router";
+import Config from "../../../config/config";
 //import ReactGA from "react-ga";
 
-import BrowseHeader from "../components/BrowseHeader.js";
-import BrowseNavigator from "../components/BrowseNavigator.js";
-import BrowseFilters from "../components/BrowseFilters.js";
+import BrowseHeader from "../../../components/BrowseHeader.js";
+import BrowseNavigator from "../../../components/BrowseNavigator.js";
+import BrowseFilters from "../../../components/BrowseFilters.js";
 
 function BrowsePage(props) {
   // Variables
@@ -25,6 +26,8 @@ function BrowsePage(props) {
   const [searchResultMessage, setSearchResultMessage] = useState(
     "Search for a game and see others like it!"
   );
+
+  const router = useRouter();
   //ReactGA.initialize(Config.GA_TRACKING_CODE);
 
   //Effects
@@ -33,6 +36,10 @@ function BrowsePage(props) {
 
     setSimilarGames();
   }, []);
+
+  useEffect(() => {
+    setSimilarGames();
+  }, [router.query.slug]);
 
   useEffect(() => {
     updateSearchResults();
@@ -220,9 +227,14 @@ function BrowsePage(props) {
 
   return (
     <div className="browsing-wrapper">
-      <div className="browse-header no-game">
-        <div className="browse-header-search-announcer">Search for a game</div>
-      </div>
+      <BrowseHeader
+        searchSuggestions={searchSuggestions}
+        clearSearchSuggestions={() => {
+          setSearchSuggestions([]);
+        }}
+        serverAddress={Config.serverAddress}
+        targetGame={targetGame}
+      />
       <div className="browsing-navigation-filter-wrapper">
         <div className="browsing-filters-wrapper-left">
           <BrowseFilters
@@ -271,6 +283,16 @@ function BrowsePage(props) {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const res = await fetch(
+    Config.serverAddress + "/similargames" + "/" + context.params.slug
+  );
+
+  const responseObject = await res.json();
+
+  return { props: { responseObject } };
 }
 
 export default BrowsePage;

@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import { useRouter } from "next/router";
 
 import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
 
 function PopularCardPanel(props) {
   // Variables
-  const [popularGames, setPopularGames] = useState([]);
-  //const navigate = useNavigate();
-
-  // Effects
-  useEffect(() => {
-    requestPopularGames();
-  }, []);
+  const router = useRouter();
 
   // Class Gets
   const getPopularCardPanel = () => {
@@ -19,14 +13,20 @@ function PopularCardPanel(props) {
       <div className="popular-card-panel">
         <div className="popular-card-panel-header">Popular</div>
         <div className="popular-card-projector">
-          {popularGames.map((game, index) => {
+          {props.popularGames.map((game, index) => {
             return (
               <div className="popular-card" key={index}>
                 <div
                   className="popular-card-image-wrapper"
                   key={index + "image-wrapper"}
                 >
-                  <a to={"/game?id=" + game.id}>
+                  <a
+                    href={"/game/" + game.id}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      handleGameDetailClick(game.id);
+                    }}
+                  >
                     <img
                       className="popular-card-image"
                       key={index + "card-image"}
@@ -63,6 +63,12 @@ function PopularCardPanel(props) {
                 <a
                   className="popular-card-button"
                   key={index + "card-button"}
+                  href={"/find-games-like/" + game.web_name}
+                  value={game.web_name}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleGamesLikeClick(game.web_name);
+                  }}
                   to={"/find-games-like?q=" + game.web_name}
                 >
                   <span
@@ -80,31 +86,12 @@ function PopularCardPanel(props) {
     );
   };
 
-  // Functions
-  const requestPopularGames = () => {
-    const xhttp = new XMLHttpRequest();
+  const handleGamesLikeClick = (webName) => {
+    router.push("/find-games-like/" + webName);
+  };
 
-    let requestUrl = props.serverAddress + "/populargames";
-
-    xhttp.open("get", requestUrl, true);
-
-    xhttp.send();
-
-    xhttp.onerror = () => {
-      //navigate("/connection-error");
-    };
-
-    xhttp.onload = () => {
-      if (!xhttp.response) return;
-
-      let tempPopularGames = JSON.parse(xhttp.response);
-
-      if (!tempPopularGames || tempPopularGames.length === 0) {
-        //navigate("/connection-error");
-      }
-
-      setPopularGames(tempPopularGames);
-    };
+  const handleGameDetailClick = (id) => {
+    router.push("/game/" + id);
   };
 
   return <React.Fragment>{getPopularCardPanel()}</React.Fragment>;

@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/dist/client/image";
+import Image from "next/image";
 
 import LogoEpicGamesStore from "../public/images/logo_epicgames.png";
 import LogoGog from "../public/images/logo_gog.png";
@@ -77,6 +77,8 @@ function GameDetailCard(props) {
                 className="game-detail-source-image"
                 src={LogoSteamStore}
                 alt={"Find " + props.game.title + " on Steam"}
+                width={30}
+                height={30}
               />
             </div>
             <div className="game-detail-source-name">View on Steam</div>
@@ -115,6 +117,8 @@ function GameDetailCard(props) {
                 className="game-detail-source-image"
                 src={LogoGog}
                 alt={"Find " + props.game.title + " on Gog"}
+                width={30}
+                height={30}
               />
             </div>
             <div className="game-detail-source-name"> View on Gog</div>
@@ -153,6 +157,8 @@ function GameDetailCard(props) {
                 className="game-detail-source-image"
                 src={LogoEpicGamesStore}
                 alt={"Find " + props.game.title + " on Epic Games"}
+                width={30}
+                height={30}
               />
             </div>
             <div className="game-detail-source-name">View on Epic Games</div>
@@ -196,7 +202,7 @@ function GameDetailCard(props) {
             {props.game.title}
           </div>
           <div className="detail-card-image-wrapper">
-            <Image
+            <img
               className="detail-card-image"
               src={
                 props.serverAddress +

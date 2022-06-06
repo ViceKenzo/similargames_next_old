@@ -8,9 +8,7 @@ function GameDetailPage(props) {
   // Variables
   const [game, setGame] = useState(null);
   const [moreLikeThisGames, setMoreLikeThisGames] = useState(null);
-  //const location = useLocation();
   const location = { pathname: "bleep bloop", search: "blaap" };
-  //const navigate = useNavigate();
 
   // Effects
   useEffect(() => {
@@ -21,27 +19,19 @@ function GameDetailPage(props) {
     window.scrollTo(0, 0);
   }, [location.search]);
 
-  useEffect(() => {
-    let qParam = new URLSearchParams(location.search).get("id");
-
-    if (qParam && qParam > 0) {
-      requestAndSetGameDetail(qParam);
-    } else {
-      //navigate("/Error");
-    }
-  }, [location.search]);
-
   // Element Gets
   const getCardRender = () => {
-    if (game)
+    if (props.game)
       return (
         <React.Fragment>
-          <GameDetailCard serverAddress={Config.serverAddress} game={game} />
-          <MoreLikeThisPanel
-            games={moreLikeThisGames}
+          <GameDetailCard
             serverAddress={Config.serverAddress}
-            requestAndSetGameDetail={requestAndSetGameDetail}
-            mainGame={game}
+            game={props.game}
+          />
+          <MoreLikeThisPanel
+            games={props.moreLikeThisGames.similarGames}
+            serverAddress={Config.serverAddress}
+            mainGame={props.game}
           />
         </React.Fragment>
       );
@@ -95,6 +85,20 @@ function GameDetailPage(props) {
   };
 
   return <div className="game-detail-wrapper">{getCardRender()}</div>;
+}
+
+export async function getServerSideProps(context) {
+  const res_game = await fetch(
+    Config.serverAddress + "/gamedetail/" + context.params.id
+  );
+  const res_morelikethis = await fetch(
+    Config.serverAddress + "/gameslike/" + context.params.id + "/8"
+  );
+
+  const game = await res_game.json();
+  const moreLikeThisGames = await res_morelikethis.json();
+
+  return { props: { game, moreLikeThisGames } };
 }
 
 export default GameDetailPage;

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/dist/client/image";
+import { useRouter } from "next/router";
 
 import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,7 @@ function SearchBar(props) {
   const [searchBarHidden, setSearchBarHidden] = useState(true);
   const [xIconVisible, setXIconVisible] = useState(false);
 
-  //const navigate = useNavigate();
+  const router = useRouter();
 
   // Refs
   const compSearchInput = useRef(null);
@@ -85,6 +85,11 @@ function SearchBar(props) {
   };
 
   // Functions
+  const handleSuggestionsClick = (webName) => {
+    router.push("/find-games-like/" + webName);
+    setSearchBarHidden(true);
+  };
+
   return (
     <div className="search-bar" ref={searchBar}>
       <div className="search-bar-input">
@@ -126,10 +131,10 @@ function SearchBar(props) {
                 <a
                   key={index + "result"}
                   className="search-product-result"
+                  href={"/find-games-like/" + game.web_name}
                   onClick={(event) => {
                     event.preventDefault();
-                    //navigate("/find-games-like?q=" + game.web_name);
-                    setSearchBarHidden(true);
+                    handleSuggestionsClick(game.web_name);
                   }}
                 >
                   <div

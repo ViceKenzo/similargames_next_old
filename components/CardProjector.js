@@ -1,10 +1,13 @@
 import React from "react";
-import Link from "next/dist/client/link";
-import Image from "next/dist/client/image";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
 
 function CardProjector(props) {
+  // Variables
+  const router = useRouter();
+
   // Element Gets
   const getProjection = () => {
     if (!props.searchResults || props.searchResults.length == 0) {
@@ -17,54 +20,49 @@ function CardProjector(props) {
   const getSearchResultsProjection = () => {
     return props.searchResults.map((game, index) => {
       return (
-        <Link
+        <a
           key={index + "card"}
           className="card"
-          //href={"/game?id=" + game.id}
-          href="/about"
+          href={"/game/" + game.id}
+          onClick={(event) => {
+            event.preventDefault();
+            handleGameDetailClick(game.id);
+          }}
         >
-          <a className="card">
-            <div
-              key={index + "card-image-wrapper"}
-              className="card-image-wrapper"
-            >
-              <img
-                key={index + "card-image"}
-                className="card-image"
-                src={
-                  props.config.serverAddress +
-                  "/header_images/" +
-                  game.image_id +
-                  ".jpg"
-                }
-                width={175}
-                height={85}
-                onError={({ currentTarget }) => {
-                  currentTarget.onerror = null; // This is to prevent accidental looping
-                  currentTarget.src = ThumbnailImage;
-                }}
-                alt={game.title}
-              />
+          <div
+            key={index + "card-image-wrapper"}
+            className="card-image-wrapper"
+          >
+            <img
+              key={index + "card-image"}
+              className="card-image"
+              src={
+                props.config.serverAddress +
+                "/header_images/" +
+                game.image_id +
+                ".jpg"
+              }
+              width={175}
+              height={85}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // This is to prevent accidental looping
+                currentTarget.src = ThumbnailImage;
+              }}
+              alt={game.title}
+            />
+          </div>
+          <div key={index + "card-text-wrapper"} className="card-text-wrapper">
+            <div key={index + "card-title"} className="card-title">
+              {game.title}
             </div>
-            <div
-              key={index + "card-text-wrapper"}
-              className="card-text-wrapper"
-            >
-              <div key={index + "card-title"} className="card-title">
-                {game.title}
-              </div>
-              <div key={index + "card-tags"} className="card-tags">
-                {game.tags.join(" | ")}
-              </div>
+            <div key={index + "card-tags"} className="card-tags">
+              {game.tags.join(" | ")}
             </div>
-            <div
-              key={index + "card-release-date"}
-              className="card-release-date"
-            >
-              {getReleaseDate(game)}
-            </div>
-          </a>
-        </Link>
+          </div>
+          <div key={index + "card-release-date"} className="card-release-date">
+            {getReleaseDate(game)}
+          </div>
+        </a>
       );
     });
   };
@@ -97,6 +95,10 @@ function CardProjector(props) {
     )
       return game.release_date;
     else return null;
+  };
+
+  const handleGameDetailClick = (id) => {
+    router.push("/game/" + id);
   };
 
   return <div className="card-projector">{getProjection()}</div>;
