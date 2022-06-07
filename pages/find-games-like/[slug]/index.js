@@ -339,9 +339,8 @@ function BrowsePage(props) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(
-    Config.serverAddress + "/similargames" + "/" + context.params.slug
-  );
+  const { slug } = context.params;
+  const res = await fetch(Config.serverAddress + "/similargames" + "/" + slug);
 
   const responseObject = await res.json();
 
