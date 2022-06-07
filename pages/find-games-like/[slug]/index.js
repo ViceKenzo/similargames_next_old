@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import Config from "../../../config/config";
 import ReactGA from "react-ga";
@@ -205,63 +206,128 @@ function BrowsePage(props) {
     }
   };
 
+  const getTop3 = () => {
+    if (props.responseObject.similarGames.length < 3) return "";
+
+    let first = {
+      title: props.responseObject.similarGames[0].title,
+      matching: props.responseObject.similarGames[0].matching,
+    };
+    let second = {
+      title: props.responseObject.similarGames[1].title,
+      matching: props.responseObject.similarGames[1].matching,
+    };
+    let third = {
+      title: props.responseObject.similarGames[2].title,
+      matching: props.responseObject.similarGames[2].matching,
+    };
+
+    for (let i = 0; i < props.responseObject.similarGames.length; ++i) {
+      if (props.responseObject.similarGames[i].matching > third.matching) {
+        if (props.responseObject.similarGames[i].matching > second.matching) {
+          if (props.responseObject.similarGames[i].matching > first.matching) {
+            first.title = props.responseObject.similarGames[i].title;
+            first.matching = props.responseObject.similarGames[i].matching;
+          } else {
+            second.title = props.responseObject.similarGames[i].title;
+            second.matching = props.responseObject.similarGames[i].matching;
+          }
+        } else {
+          third.title = props.responseObject.similarGames[i].title;
+          third.matching = props.responseObject.similarGames[i].matching;
+        }
+      }
+    }
+
+    return (
+      " " +
+      first.title +
+      ", " +
+      second.title +
+      " , " +
+      third.title +
+      " and many more!"
+    );
+  };
+
   return (
-    <div className="browsing-wrapper">
-      <BrowseHeader
-        searchSuggestions={searchSuggestions}
-        clearSearchSuggestions={() => {
-          setSearchSuggestions([]);
-        }}
-        serverAddress={Config.serverAddress}
-        targetGame={targetGame}
-      />
-      <div className="browsing-navigation-filter-wrapper">
-        <div className="browsing-filters-wrapper-left">
-          <BrowseFilters
-            matchValue={matchValue}
-            handleChangeMatching={handleChangeMatching}
-            handleNSFWClick={handleNSFWClick}
-            handleSameDeveloperClick={handleSameDeveloperClick}
-          />
-        </div>
-        <div className="browsing-navigator-wrapper">
-          <BrowseNavigator
-            currentPage={currentPage}
-            totalPages={totalPages}
-            sorting={sorting}
-            searchResults={searchResults.filter(
-              function () {
-                let itemIsWorthy = false;
+    <React.Fragment>
+      <Head>
+        <meta
+          name="description"
+          content={
+            "Find games that are similar to " +
+            props.responseObject.game.title +
+            "." +
+            getTop3() +
+            " SimilarGames is a 'games like' engine and a free exploration tool. Find the games you'll love."
+          }
+        />
+        <meta
+          name="keywords"
+          content={props.responseObject.game.title + ", " + Config.metaTags}
+        />
+        <title>
+          Games like {props.responseObject.game.title} - SimilarGames
+        </title>
+      </Head>
+      <div className="browsing-wrapper">
+        <BrowseHeader
+          searchSuggestions={searchSuggestions}
+          clearSearchSuggestions={() => {
+            setSearchSuggestions([]);
+          }}
+          serverAddress={Config.serverAddress}
+          targetGame={targetGame}
+        />
+        <div className="browsing-navigation-filter-wrapper">
+          <div className="browsing-filters-wrapper-left">
+            <BrowseFilters
+              matchValue={matchValue}
+              handleChangeMatching={handleChangeMatching}
+              handleNSFWClick={handleNSFWClick}
+              handleSameDeveloperClick={handleSameDeveloperClick}
+            />
+          </div>
+          <div className="browsing-navigator-wrapper">
+            <BrowseNavigator
+              currentPage={currentPage}
+              totalPages={totalPages}
+              sorting={sorting}
+              searchResults={searchResults.filter(
+                function () {
+                  let itemIsWorthy = false;
 
-                if (this.count >= this.startIdx && this.count < this.endIdx) {
-                  itemIsWorthy = true;
+                  if (this.count >= this.startIdx && this.count < this.endIdx) {
+                    itemIsWorthy = true;
+                  }
+
+                  this.count++;
+                  return itemIsWorthy;
+                },
+                {
+                  count: 0,
+                  startIdx: (currentPage - 1) * pageing,
+                  endIdx: currentPage * pageing,
                 }
-
-                this.count++;
-                return itemIsWorthy;
-              },
-              {
-                count: 0,
-                startIdx: (currentPage - 1) * pageing,
-                endIdx: currentPage * pageing,
-              }
-            )}
-            handleSortChange={handleSortChange}
-            handlePageChange={handlePageChange}
-            searchResultMessage={searchResultMessage}
-            config={Config}
-          />
-        </div>
-        <div className="browsing-filters-wrapper-right">
-          <BrowseFilters
-            matchValue={matchValue}
-            handleChangeMatching={handleChangeMatching}
-            handleNSFWClick={handleNSFWClick}
-            handleSameDeveloperClick={handleSameDeveloperClick}
-          />
+              )}
+              handleSortChange={handleSortChange}
+              handlePageChange={handlePageChange}
+              searchResultMessage={searchResultMessage}
+              config={Config}
+            />
+          </div>
+          <div className="browsing-filters-wrapper-right">
+            <BrowseFilters
+              matchValue={matchValue}
+              handleChangeMatching={handleChangeMatching}
+              handleNSFWClick={handleNSFWClick}
+              handleSameDeveloperClick={handleSameDeveloperClick}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import Config from "../config/config";
 
 import BrowseNavigator from "../components/BrowseNavigator.js";
@@ -167,57 +168,66 @@ function BrowsePage(props) {
   };
 
   return (
-    <div className="browsing-wrapper">
-      <div className="browse-header no-game">
-        <div className="browse-header-search-announcer">Search for a game</div>
-      </div>
-      <div className="browsing-navigation-filter-wrapper">
-        <div className="browsing-filters-wrapper-left">
-          <BrowseFilters
-            matchValue={matchValue}
-            handleChangeMatching={handleChangeMatching}
-            handleNSFWClick={handleNSFWClick}
-            handleSameDeveloperClick={handleSameDeveloperClick}
-          />
+    <React.Fragment>
+      <Head>
+        <title>SimilarGames - Search</title>
+        <meta name="description" content="Search for similar games." />
+        <meta name="keywords" content={Config.metaTags} />
+      </Head>
+      <div className="browsing-wrapper">
+        <div className="browse-header no-game">
+          <div className="browse-header-search-announcer">
+            Search for a game
+          </div>
         </div>
-        <div className="browsing-navigator-wrapper">
-          <BrowseNavigator
-            currentPage={currentPage}
-            totalPages={totalPages}
-            sorting={sorting}
-            searchResults={searchResults.filter(
-              function () {
-                let itemIsWorthy = false;
+        <div className="browsing-navigation-filter-wrapper">
+          <div className="browsing-filters-wrapper-left">
+            <BrowseFilters
+              matchValue={matchValue}
+              handleChangeMatching={handleChangeMatching}
+              handleNSFWClick={handleNSFWClick}
+              handleSameDeveloperClick={handleSameDeveloperClick}
+            />
+          </div>
+          <div className="browsing-navigator-wrapper">
+            <BrowseNavigator
+              currentPage={currentPage}
+              totalPages={totalPages}
+              sorting={sorting}
+              searchResults={searchResults.filter(
+                function () {
+                  let itemIsWorthy = false;
 
-                if (this.count >= this.startIdx && this.count < this.endIdx) {
-                  itemIsWorthy = true;
+                  if (this.count >= this.startIdx && this.count < this.endIdx) {
+                    itemIsWorthy = true;
+                  }
+
+                  this.count++;
+                  return itemIsWorthy;
+                },
+                {
+                  count: 0,
+                  startIdx: (currentPage - 1) * pageing,
+                  endIdx: currentPage * pageing,
                 }
-
-                this.count++;
-                return itemIsWorthy;
-              },
-              {
-                count: 0,
-                startIdx: (currentPage - 1) * pageing,
-                endIdx: currentPage * pageing,
-              }
-            )}
-            handleSortChange={handleSortChange}
-            handlePageChange={handlePageChange}
-            searchResultMessage={searchResultMessage}
-            config={Config}
-          />
-        </div>
-        <div className="browsing-filters-wrapper-right">
-          <BrowseFilters
-            matchValue={matchValue}
-            handleChangeMatching={handleChangeMatching}
-            handleNSFWClick={handleNSFWClick}
-            handleSameDeveloperClick={handleSameDeveloperClick}
-          />
+              )}
+              handleSortChange={handleSortChange}
+              handlePageChange={handlePageChange}
+              searchResultMessage={searchResultMessage}
+              config={Config}
+            />
+          </div>
+          <div className="browsing-filters-wrapper-right">
+            <BrowseFilters
+              matchValue={matchValue}
+              handleChangeMatching={handleChangeMatching}
+              handleNSFWClick={handleNSFWClick}
+              handleSameDeveloperClick={handleSameDeveloperClick}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 

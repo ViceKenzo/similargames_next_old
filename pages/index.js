@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Head from "next/head";
 import Config from "../config/config";
 
 import LandingPageSearchPanel from "../components/LandingPageSearchPanel.js";
@@ -61,6 +62,15 @@ function LandingPage(props) {
 
   return (
     <React.Fragment>
+      <Head>
+        <meta
+          name="description"
+          content="Find games that look, play and feel like other games you’ve played before. With this new and free 'Games Like Engine', you can explore the entire catalog of games found on Gog, Steam and Epic Games Store."
+        />
+        <meta name="keywords" content={Config.metaTags} />
+        <title>SimilarGames - Find Related Games</title>
+      </Head>
+
       <a
         style={{ display: "hidden" }}
         to={"/find-games-like?q=" + searchInputValue}

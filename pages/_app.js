@@ -22,6 +22,7 @@ import "../styles/SearchBar.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import ReactGA from "react-ga";
+import Head from "next/head";
 import Config from "../config/config";
 
 import NavBar from "../components/NavBar";
@@ -44,6 +45,18 @@ function MyApp({ Component, pageProps }) {
   // Functions
   return (
     <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <NavBar />
       <Component {...pageProps} />
       <Footer />
