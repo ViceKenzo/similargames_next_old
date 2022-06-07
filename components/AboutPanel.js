@@ -1,9 +1,4 @@
 import React from "react";
-import Image from "next/dist/client/image";
-
-import LogoEpicGamesStore from "../public/images/logo_epicgamesstore.png";
-import LogoGog from "../public/images/logo_gog.png";
-import LogoSteamStore from "../public/images/logo_steam.png";
 
 function AboutPanel(props) {
   // Functions
@@ -38,20 +33,20 @@ function AboutPanel(props) {
             target="_blank"
             rel="noreferrer"
           >
-            <Image
+            <img
               className="about-games-source-image"
               id="about-epic-image"
-              src={LogoEpicGamesStore}
+              src="/images/logo_epicgamesstore.png"
               alt="Epic Games Store Logo"
               width={59.01}
               height={90}
             />
           </a>
           <a href="https://www.gog.com/" target="_blank" rel="noreferrer">
-            <Image
+            <img
               className="about-games-source-image"
               id="about-gog-image"
-              src={LogoGog}
+              src="/images/logo_gog.png"
               alt="Gog Logo"
               width={65}
               height={65}
@@ -63,10 +58,10 @@ function AboutPanel(props) {
             target="_blank"
             rel="noreferrer"
           >
-            <Image
+            <img
               className="about-games-source-image"
               id="about-steam-image"
-              src={LogoSteamStore}
+              src="/images/logo_steam.png"
               alt="Steam Store Logo"
               width={65}
               height={65}

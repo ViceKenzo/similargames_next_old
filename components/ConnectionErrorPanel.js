@@ -1,7 +1,4 @@
 import React from "react";
-import Image from "next/dist/client/image";
-
-import ErrorImage from "../public/images/page_not_found.jpg";
 
 function ConnectionErrorPanel() {
   // Functions
@@ -19,9 +16,9 @@ function ConnectionErrorPanel() {
         </div>
       </div>
       <div className="connection-error-image-wrapper">
-        <Image
+        <img
           className="connection-error-image"
-          src={ErrorImage}
+          src="/images/page_not_found.jpg"
           alt="Error image and funny meme about a man with sand"
         />
       </div>

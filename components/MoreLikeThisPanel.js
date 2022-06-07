@@ -1,8 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
-
 function MoreLikeThisPanel(props) {
   // Variables
   const router = useRouter();
@@ -29,7 +27,7 @@ function MoreLikeThisPanel(props) {
               }
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null; // This is to prevent accidental looping
-                currentTarget.src = ThumbnailImage;
+                currentTarget.src = "/placeholders/thumbnail.jpg";
               }}
               alt={game.title}
             />

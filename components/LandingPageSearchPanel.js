@@ -1,21 +1,15 @@
 import React from "react";
-import Image from "next/image";
 
 import SearchBar from "./SearchBar.js";
-
-import LogoEpicGamesStore from "../public/images/logo_epicgamesstore.png";
-import LogoGog from "../public/images/logo_gog.png";
-import LogoSteamStore from "../public/images/logo_steam.png";
-import SimilarGamesHeaderImage from "../public/images/similargames_title.png";
 
 function LandingPageSearchPanel(props) {
   // Functions
   return (
     <div className="landing-page-search-panel">
       <div className="search-panel-image-wrapper">
-        <Image
+        <img
           className="search-panel-header"
-          src={SimilarGamesHeaderImage}
+          src={"/images/similargames_title.png"}
           alt="Similar Games Logo"
           width={700}
           height={152.17}
@@ -42,18 +36,18 @@ function LandingPageSearchPanel(props) {
             target="_blank"
             rel="noreferrer"
           >
-            <Image
+            <img
               className="logo-epic"
-              src={LogoEpicGamesStore}
+              src="/images/logo_epicgamesstore.png"
               alt="Epic Games Store Logo"
               width={50}
               height={76.25}
             />
           </a>
           <a href="https://www.gog.com/" target="_blank" rel="noreferrer">
-            <Image
+            <img
               className="logo-gog"
-              src={LogoGog}
+              src="/images/logo_gog.png"
               alt="Gog Logo"
               width={50}
               height={50}
@@ -64,9 +58,9 @@ function LandingPageSearchPanel(props) {
             target="_blank"
             rel="noreferrer"
           >
-            <Image
+            <img
               className="logo-steam "
-              src={LogoSteamStore}
+              src="/images/logo_steam.png"
               alt="Steam Store Logo"
               width={50}
               height={50}

@@ -1,8 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
-
-import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
 
 function CardProjector(props) {
   // Variables
@@ -46,7 +43,7 @@ function CardProjector(props) {
               height={85}
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null; // This is to prevent accidental looping
-                currentTarget.src = ThumbnailImage;
+                currentTarget.src = "/placeholders/thumbnail.jpg";
               }}
               alt={game.title}
             />
@@ -71,9 +68,9 @@ function CardProjector(props) {
     return (
       <div className="card" id="no-search-result-card">
         <div className="card-image-wrapper">
-          <Image
+          <img
             className="card-image"
-            src={ThumbnailImage}
+            src="/../placeholders/thumbnail.jpg"
             width={175}
             height={85}
             alt="Search For Similar Games Question Mark Image"

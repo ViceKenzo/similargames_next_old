@@ -1,7 +1,4 @@
 import React from "react";
-import Image from "next/dist/client/image";
-
-import ErrorImage from "../public/images/page_not_found.jpg";
 
 function Error() {
   // Functions
@@ -14,9 +11,9 @@ function Error() {
         </div>
       </div>
       <div className="error-image-wrapper">
-        <Image
+        <img
           className="error-image"
-          src={ErrorImage}
+          src={"/images/page_not_found.jpg"}
           alt="Error image and funny meme about a man with sand"
         />
       </div>

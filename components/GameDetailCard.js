@@ -1,10 +1,5 @@
 import React from "react";
-import Image from "next/image";
 
-import LogoEpicGamesStore from "../public/images/logo_epicgames.png";
-import LogoGog from "../public/images/logo_gog.png";
-import LogoSteamStore from "../public/images/logo_steam.png";
-import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -74,9 +69,9 @@ function GameDetailCard(props) {
             rel="noreferrer"
           >
             <div className="game-detail-source-image-wrapper">
-              <Image
+              <img
                 className="game-detail-source-image"
-                src={LogoSteamStore}
+                src="/images/logo_steam.png"
                 alt={"Find " + props.game.title + " on Steam"}
                 width={30}
                 height={30}
@@ -115,9 +110,9 @@ function GameDetailCard(props) {
             rel="noreferrer"
           >
             <div className="game-detail-source-image-wrapper">
-              <Image
+              <img
                 className="game-detail-source-image"
-                src={LogoGog}
+                src="/images/logo_gog.png"
                 alt={"Find " + props.game.title + " on Gog"}
                 width={30}
                 height={30}
@@ -156,9 +151,9 @@ function GameDetailCard(props) {
             rel="noreferrer"
           >
             <div className="game-detail-source-image-wrapper">
-              <Image
+              <img
                 className="game-detail-source-image"
-                src={LogoEpicGamesStore}
+                src="/images/logo_epicgames.png"
                 alt={"Find " + props.game.title + " on Epic Games"}
                 width={30}
                 height={30}
@@ -215,7 +210,7 @@ function GameDetailCard(props) {
               }
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null; // This is to prevent accidental looping
-                currentTarget.src = ThumbnailImage;
+                currentTarget.src = "/placeholders/thumbnail.jpg";
               }}
               alt={props.game.title + " Image"}
             />

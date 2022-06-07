@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import ThumbnailImage from "../public/placeholders/thumbnail.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -152,7 +151,7 @@ function SearchBar(props) {
                       height={76}
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // This is to prevent accidental looping
-                        currentTarget.src = ThumbnailImage;
+                        currentTarget.src = "/placeholders/thumbnail.jpg";
                       }}
                       alt={"Search for games similar to " + game.title}
                     ></img>
