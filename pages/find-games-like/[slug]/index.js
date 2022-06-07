@@ -134,7 +134,6 @@ function BrowsePage(props) {
 
   // Functions
   const updateSearchResults = () => {
-    console.log("Update search results is called");
     if (!targetGame) return;
 
     function sortComparator(sortingDef) {
@@ -197,7 +196,6 @@ function BrowsePage(props) {
   };
 
   const setSimilarGames = () => {
-    console.log("Set similar games results is called");
     if (
       props.responseObject == null ||
       props.responseObject.game == null ||

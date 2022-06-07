@@ -11,8 +11,6 @@ function GameDetailPage(props) {
     if (props.game)
       return (
         <React.Fragment>
-          {console.log(props)}
-
           <Head>
             <title>SimilarGames - {props.game.title}</title>
             <meta
