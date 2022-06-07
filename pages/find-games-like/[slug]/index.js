@@ -36,26 +36,32 @@ function BrowsePage(props) {
     window.scrollTo(0, 0);
 
     setSimilarGames();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     setSimilarGames();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.slug]);
 
   useEffect(() => {
     updateSearchResults();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameData]);
 
   useEffect(() => {
     updateSearchResults();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sorting]);
 
   useEffect(() => {
     updateSearchResults();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showNSFW]);
 
   useEffect(() => {
     updateSearchResults();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSameDeveloper]);
 
   useEffect(() => {
@@ -70,6 +76,7 @@ function BrowsePage(props) {
       }, 500);
       return () => clearTimeout(delay);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchValue]);
 
   // Handlers
@@ -127,6 +134,7 @@ function BrowsePage(props) {
 
   // Functions
   const updateSearchResults = () => {
+    console.log("Update search results is called");
     if (!targetGame) return;
 
     function sortComparator(sortingDef) {
@@ -189,6 +197,7 @@ function BrowsePage(props) {
   };
 
   const setSimilarGames = () => {
+    console.log("Set similar games results is called");
     if (
       props.responseObject == null ||
       props.responseObject.game == null ||

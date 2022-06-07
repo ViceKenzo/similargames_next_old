@@ -10,7 +10,7 @@ function Error() {
       <div className="error-text-wrapper">
         <div className="error-header">Page not found!</div>
         <div className="error-report">
-          (If you've found a bug, please report it at our contact email.)
+          (If you&apos;ve found a bug, please report it at our contact email.)
         </div>
       </div>
       <div className="error-image-wrapper">

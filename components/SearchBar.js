@@ -154,6 +154,7 @@ function SearchBar(props) {
                         currentTarget.onerror = null; // This is to prevent accidental looping
                         currentTarget.src = ThumbnailImage;
                       }}
+                      alt={"Search for games similar to " + game.title}
                     ></img>
                   </div>
                   <div

@@ -28,34 +28,7 @@ function BrowsePage(props) {
   //Effects
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    setSimilarGames();
   }, []);
-
-  useEffect(() => {
-    updateSearchResults();
-  }, [gameData]);
-
-  useEffect(() => {
-    updateSearchResults();
-  }, [sorting]);
-
-  useEffect(() => {
-    updateSearchResults();
-  }, [showNSFW]);
-
-  useEffect(() => {
-    updateSearchResults();
-  }, [showSameDeveloper]);
-
-  useEffect(() => {
-    if (targetGame) {
-      const delay = setTimeout(() => {
-        updateSearchResults();
-      }, 500);
-      return () => clearTimeout(delay);
-    }
-  }, [matchValue]);
 
   // Handlers
   const handleSortChange = (event) => {
@@ -87,86 +60,6 @@ function BrowsePage(props) {
   };
 
   // Functions
-  const updateSearchResults = () => {
-    if (!targetGame) return;
-
-    function sortComparator(sortingDef) {
-      return function (a, b) {
-        switch (sortingDef) {
-          case "Release Date":
-            let timeValuesA = a.release_date.split("/");
-            let timeValuesB = b.release_date.split("/");
-
-            for (let i = 2; i >= 0; --i) {
-              if (timeValuesA[i] < timeValuesB[i]) return 1;
-              if (timeValuesA[i] > timeValuesB[i]) return -1;
-            }
-            return 0;
-          case "Name":
-            if (a.title > b.title) return 1;
-            if (a.title < b.title) return -1;
-            return 0;
-          case "Relevance":
-            if (a.matching < b.matching) return 1;
-            if (a.matching > b.matching) return -1;
-            return 0;
-        }
-      };
-    }
-
-    // Filter the gameData, then sort it
-    let newSearchResults = gameData.filter((item) => {
-      // If the item matching is lower than the set matching, return false
-      if (item.matching < matchValue) {
-        return false;
-      }
-
-      // If NSFW is not checked, return false for all items with the NSFW tag
-      if (!showNSFW) {
-        for (let i = 0; i < item.tags.length; ++i) {
-          if (item.tags[i] == "NSFW") return false;
-        }
-      }
-
-      // Developer
-      if (!showSameDeveloper) {
-        if (item.developer == targetGame.developer) return false;
-      }
-
-      return true;
-    });
-    newSearchResults = newSearchResults.sort(sortComparator(sorting));
-
-    let newTotalPages = 1;
-    if (newSearchResults.length > 0)
-      newTotalPages = Math.ceil(newSearchResults.length / pageing);
-    let newCurrentPage = 1;
-
-    setTotalPages(newTotalPages);
-    handlePageChange(newCurrentPage);
-    setSearchResults(newSearchResults);
-
-    window.scrollTo(0, 0);
-  };
-
-  const setSimilarGames = () => {
-    if (
-      props.responseObject == null ||
-      props.responseObject.game == null ||
-      props.responseObject.similarGames == null
-    )
-      return;
-
-    if (props.responseObject.similarGames.length <= 0) {
-      setSearchResultMessage("No similar games were found.");
-      setTargetGame(props.responseObject.game);
-      setGameData([]);
-    } else {
-      setTargetGame(props.responseObject.game);
-      setGameData(props.responseObject.similarGames);
-    }
-  };
-
   return (
     <React.Fragment>
       <Head>

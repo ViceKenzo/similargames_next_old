@@ -15,7 +15,7 @@ function ConnectionErrorPanel() {
           Make sure to check your internet connection. If your connection works
           fine then our servers are probably down.
           <br />
-          We apologize for the inconvenience and we'll be right back!
+          We apologize for the inconvenience and we&apos;ll be right back!
         </div>
       </div>
       <div className="connection-error-image-wrapper">

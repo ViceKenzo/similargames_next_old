@@ -32,12 +32,16 @@ function LandingPageSearchPanel(props) {
         ></SearchBar>
       </div>
       <div className="search-panel-main-phrase">
-        Find the games you'll love.
+        Find the games you&apos;ll love.
       </div>
       <div className="search-panel-footer">
         <span className="search-panel-icon-announcer">On:</span>
         <div className="search-panel-icon-wrapper">
-          <a href="https://www.epicgames.com/store" target="_blank">
+          <a
+            href="https://www.epicgames.com/store"
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image
               className="logo-epic"
               src={LogoEpicGamesStore}
@@ -46,7 +50,7 @@ function LandingPageSearchPanel(props) {
               height={76.25}
             />
           </a>
-          <a href="https://www.gog.com/" target="_blank">
+          <a href="https://www.gog.com/" target="_blank" rel="noreferrer">
             <Image
               className="logo-gog"
               src={LogoGog}
@@ -55,7 +59,11 @@ function LandingPageSearchPanel(props) {
               height={50}
             />
           </a>
-          <a href="https://store.steampowered.com/" target="_blank">
+          <a
+            href="https://store.steampowered.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image
               className="logo-steam "
               src={LogoSteamStore}

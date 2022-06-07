@@ -23,6 +23,7 @@ function LandingPage(props) {
     }, 500);
 
     return () => clearTimeout(delay);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInputValue]);
 
   // Handlers

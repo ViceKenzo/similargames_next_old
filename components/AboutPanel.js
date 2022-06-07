@@ -33,7 +33,11 @@ function AboutPanel(props) {
           sources:
         </div>
         <div className="about-games-source-links-wrapper">
-          <a href="https://www.epicgames.com/store" target="_blank">
+          <a
+            href="https://www.epicgames.com/store"
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image
               className="about-games-source-image"
               id="about-epic-image"
@@ -43,7 +47,7 @@ function AboutPanel(props) {
               height={90}
             />
           </a>
-          <a href="https://www.gog.com/" target="_blank">
+          <a href="https://www.gog.com/" target="_blank" rel="noreferrer">
             <Image
               className="about-games-source-image"
               id="about-gog-image"
@@ -54,7 +58,11 @@ function AboutPanel(props) {
             />
           </a>
 
-          <a href="https://store.steampowered.com/" target="_blank">
+          <a
+            href="https://store.steampowered.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image
               className="about-games-source-image"
               id="about-steam-image"

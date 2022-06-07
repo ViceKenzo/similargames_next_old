@@ -71,6 +71,7 @@ function GameDetailCard(props) {
             className="game-detail-source-button"
             href={props.game.sources[i].link}
             target="_blank"
+            rel="noreferrer"
           >
             <div className="game-detail-source-image-wrapper">
               <Image
@@ -111,6 +112,7 @@ function GameDetailCard(props) {
             className="game-detail-source-button"
             href={props.game.sources[i].link}
             target="_blank"
+            rel="noreferrer"
           >
             <div className="game-detail-source-image-wrapper">
               <Image
@@ -151,6 +153,7 @@ function GameDetailCard(props) {
             className="game-detail-source-button"
             href={props.game.sources[i].link}
             target="_blank"
+            rel="noreferrer"
           >
             <div className="game-detail-source-image-wrapper">
               <Image
